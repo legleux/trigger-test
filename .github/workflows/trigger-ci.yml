@@ -39,15 +39,15 @@ jobs:
         run: |
           # Find the id of the last build
           last_workflow=$(curl -X GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/workflows/${INPUT_WORKFLOW_FILE_NAME}/runs?event=repository_dispatch&status=queued" \
-            -H 'Accept: application/vnd.github.antiope-preview+json' \
+            -H 'Accept: application/vnd.github.v3+json' \
             -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq '[.workflow_runs[]] | first')
-          echo $last_workflow
+          echo "Last workflow should be some json: $last_workflow"
           last_workflow_id=$(echo $last_workflow | jq '.id')
           echo "The workflow id is [$last_workflow_id]."
           echo ""
           conclusion=$(echo $last_workflow | jq '.conclusion')
           status=$(echo $last_workflow | jq '.status')
-          wait_interval=60
+          wait_interval=5
           while [[ $conclusion == "null" && $status != "\"completed\"" ]]
           do
             echo "Sleeping for $wait_interval seconds"

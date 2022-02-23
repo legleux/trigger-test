@@ -2,6 +2,7 @@ name: Trigger trigger-ci
 on: [pull_request, push]
 jobs:
   dispatch_build_event:
+    name: Trigger CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,17 +13,17 @@ jobs:
               "https://api.github.com/repos/legleux/trigger-ci/dispatches" \
               -d '{"event_type": "build", "client_payload": {"SHA": "${{ github.sha }}"}}'
 
-      # - name: trigger ci
-      #   uses: actions/github-script@v6
-      #   with:
-      #     github-token: ${{ secrets.PAT_TOKEN }}
-      #     script: |
-      #       await github.rest.actions.createWorkflowDispatch({
-      #         owner: 'legleux',
-      #         repo: 'trigger-test',
-      #         workflow_id: 'ci.yml',
-      #         ref: 'main'
-      #       })
+      - name: trigger ci
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'legleux',
+              repo: 'trigger-ci',
+              workflow_id: 'ci.yml',
+              ref: 'main'
+            })
       - name: Get result
         run: |
           echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}

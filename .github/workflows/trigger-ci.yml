@@ -23,7 +23,7 @@ jobs:
               repo: 'trigger-ci',
               workflow_id: 'ci.yml',
               event_type: 'build',
-              client_payload: {"SHA": "${{ github.sha }}"}}
+              client_payload: {"SHA": "${{ github.sha }}"}
             })
       - name: Get result
         run: |

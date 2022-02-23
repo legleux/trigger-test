@@ -1,4 +1,4 @@
-name: Trigger trigger-ci
+name: Trigger CI repo
 on: [pull_request, push]
 jobs:
   dispatch_build_event:

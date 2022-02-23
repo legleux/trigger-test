@@ -38,7 +38,7 @@ jobs:
           INPUT_WORKFLOW_FILE_NAME: "ci.yml"
         run: |
           # Find the id of the last build
-          last_workflow=$(curl -X GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/workflows/${INPUT_WORKFLOW_FILE_NAME}/runs?event=repository_dispatch&status=in_progress" \
+          last_workflow=$(curl -X GET "https://api.github.com/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/workflows/${INPUT_WORKFLOW_FILE_NAME}/runs?event=repository_dispatch&status=queued" \
             -H 'Accept: application/vnd.github.v3+json' \
             -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq '[.workflow_runs[]] | first')
           echo "Last workflow should be some json: $last_workflow"

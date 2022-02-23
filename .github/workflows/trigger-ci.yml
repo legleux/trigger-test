@@ -31,7 +31,7 @@ jobs:
 
       - name: Wait on result
         env:
-          INPUT_GITHUB_TOKEN: "{{ secrets.PAT_TOKEN }}"
+          INPUT_GITHUB_TOKEN: "{{ secrets.CI_TOKEN }}"
           INPUT_OWNER: legleux
           INPUT_REPO: trigger-ci
           INPUT_WORKFLOW_FILE_NAME: "ci.yml"

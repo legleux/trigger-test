@@ -47,7 +47,7 @@ jobs:
           echo ""
           conclusion=$(echo $last_workflow | jq '.conclusion')
           status=$(echo $last_workflow | jq '.status')
-
+          wait_interval=60
           while [[ $conclusion == "null" && $status != "\"completed\"" ]]
           do
             echo "Sleeping for $wait_interval seconds"

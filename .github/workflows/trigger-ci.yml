@@ -30,11 +30,12 @@ jobs:
           echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
 
       - name: Wait on result
+        env:
+          INPUT_GITHUB_TOKEN: "{{ secrets.PAT_TOKEN }}"
+          INPUT_OWNER: legleux
+          INPUT_REPO: trigger-ci
+          INPUT_WORKFLOW_FILE_NAME: "ci.yml"
         run: |
-          INPUT_GITHUB_TOKEN={{ secrets.PAT_TOKEN }}
-          INPUT_OWNER=legleux
-          INPUT_REPO=trigger-ci
-          INPUT_WORKFLOW_FILE_NAME="ci.yml"
           # Find the id of the last build
           last_workflow=$(curl -X GET "https://api.github.com/repos/$INPUT_OWNER/$INPUT_REPO/actions/workflows/$INPUT_WORKFLOW_FILE_NAME/runs" \
             -H 'Accept: application/vnd.github.v3+json' \

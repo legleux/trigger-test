@@ -6,25 +6,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - name: Send build repository_dispatch event to trigger-ci
-        # run: |
-        #   curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-        #       -H 'Accept: application/vnd.github.v3+json' \
-        #       "https://api.github.com/repos/legleux/trigger-ci/dispatches" \
-        #       -d '{"event_type": "build", "client_payload": {"SHA": "${{ github.sha }}"}}'
+      - name: Send build repository_dispatch event to trigger-ci
+        run: |
+          curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+              -H 'Accept: application/vnd.github.v3+json' \
+              "https://api.github.com/repos/legleux/trigger-ci/dispatches" \
+              -d '{"event_type": "build", "client_payload": {"SHA": "${{ github.sha }}"}}'
 
-      - name: trigger ci
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            await github.rest.actions.createDispatchEvent({
-              owner: 'legleux',
-              repo: 'trigger-ci',
-              workflow_id: 'ci.yml',
-              event_type: 'build',
-              client_payload: {"SHA": "${{ github.sha }}"}
-            })
+      # - name: trigger ci
+      #   uses: actions/github-script@v6
+      #   with:
+      #     github-token: ${{ secrets.PAT_TOKEN }}
+      #     script: |
+      #       await github.rest.actions.createDispatchEvent({
+      #         owner: 'legleux',
+      #         repo: 'trigger-ci',
+      #         workflow_id: 'ci.yml',
+      #         event_type: 'build',
+      #         client_payload: {"SHA": "${{ github.sha }}"}
+      #       })
       - name: Get result
         run: |
           echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}

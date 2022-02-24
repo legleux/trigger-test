@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "I've  exectuted on $1!"
+echo "I've  executed on $1!"

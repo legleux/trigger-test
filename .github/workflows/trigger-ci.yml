@@ -2,11 +2,11 @@ name: Trigger CI repo
 on:
   push:
     branches:
-      - master
+      - main
       - develop
   pull_request:
     branches:
-      - master
+      - main
       - develop
 jobs:
   dispatch_build_event:

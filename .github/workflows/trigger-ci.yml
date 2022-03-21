@@ -1,5 +1,13 @@
 name: Trigger CI repo
-on: [pull_request, push]
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
 jobs:
   dispatch_build_event:
     name: Trigger CI
@@ -11,7 +19,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
               -H 'Accept: application/vnd.github.v3+json' \
               "https://api.github.com/repos/legleux/trigger-ci/dispatches" \
-              -d '{"event_type": "build", "client_payload": {"SHA": "${{ github.sha }}"}}'
+              -d '{"event_type": "build", "client_payload": {"branch":"${GITHUB_REF##*/}", "SHA": "${{ github.sha }}"}}'
 
       # - name: trigger ci
       #   uses: actions/github-script@v6

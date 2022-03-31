@@ -6,6 +6,7 @@ jobs:
     name: A job to say hello
     steps:     
       - uses: actions/checkout@v2
+      - run: ls -lh
       - uses: legleux/gha/build@main
       - id: foo
         uses: legleux/gha/build@main

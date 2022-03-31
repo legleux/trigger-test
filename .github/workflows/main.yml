@@ -7,7 +7,12 @@ jobs:
     name: A jerb to say hello
     steps:     
       - uses: legleux/gha@main
+      
       - uses: legleux/gha/clio@main
+
+      - uses: legleux/gha/cd@main
+        with:
+          gitrev: "DEADBEEF"
 
       - id: foo
         uses: legleux/gha@main

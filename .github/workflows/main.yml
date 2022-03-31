@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A jorb to say hello
+    name: A jerb to say hello
     steps:     
       - run: echo yo bro
       - uses: actions/checkout@v2

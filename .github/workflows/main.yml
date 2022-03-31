@@ -7,7 +7,7 @@ jobs:
     steps:     
       - run: echo yo bro
       - uses: actions/checkout@v2
-      - run: ls -lh
+      - run: ls -lha
       - uses: legleux/gha@main
       - id: foo
         uses: legleux/gha@main

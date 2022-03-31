@@ -11,8 +11,8 @@ jobs:
       - uses: legleux/gha/clio@main
 
       - uses: legleux/gha/cd@main
-        with:
-          gitrev: "DEADBEEF"
+        # with:
+        #   gitrev: "DEADBEEF"
 
       - id: foo
         uses: legleux/gha@main

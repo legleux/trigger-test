@@ -7,9 +7,9 @@ jobs:
     steps:     
       - uses: actions/checkout@v2
       - run: ls -lh
-      - uses: legleux/gha/build@main
+      - uses: legleux/gha@main
       - id: foo
-        uses: legleux/gha/build@main
+        uses: legleux/gha@main
         with:
           who-to-greet: 'Bloobert'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}

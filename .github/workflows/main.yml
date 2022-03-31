@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     name: A jerb to say hello
     steps:     
-      - run: echo yo bro
-      - uses: actions/checkout@v2
-      - run: ls -lha
+      # - run: echo yo bro
+      # - uses: actions/checkout@v2
+      # - run: ls -lha
       - uses: legleux/gha@main
       - id: foo
         uses: legleux/gha@main
